@@ -1,11 +1,15 @@
+import { BiSearch } from "react-icons/bi";
+import styles from '../resources/css/searchBar.module.css';
+
+
 function SearchBar() {
     return (
-        <>
-            <button>Seach</button>
+        <article className={styles.container}>
+            <button><BiSearch /></button>
             <input 
                 name="search"
                 placeholder="Search Bar" />
-        </>
+        </article>
     );
 }
 
