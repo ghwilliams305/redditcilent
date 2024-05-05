@@ -8,7 +8,7 @@ function SearchBar() {
             <button><BiSearch /></button>
             <input 
                 name="search"
-                placeholder="Search Bar" />
+                placeholder="Search..." />
         </article>
     );
 }

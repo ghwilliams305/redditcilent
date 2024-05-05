@@ -9,15 +9,17 @@ function ArticleCard() {
                 <i>0</i>
                 <button><CgArrowLongDown /></button>
             </div>
-            <div className={styles.card}>
+            <figure className={styles.card}>
                 <h2>Article Title</h2>
-                <img src="" alt="Article Cover Image" />
                 <div>
-                    <p><strong>Posted By:</strong> Author</p>
-                    <p>Time</p>
-                    <p>Comment #</p>
+                    <img src="" alt="Article Cover Image" />
                 </div>
-            </div>
+                <figcaption>
+                    <p><strong>Posted By:</strong> Author</p>
+                    <p className={styles.time}>Time</p>
+                    <p>Comment #</p>
+                </figcaption>
+            </figure>
         </article>
     );
 }

@@ -1,10 +1,63 @@
 .article  {
-    box-shadow: 0 0 1rem #666;
+    border: 1px solid #666;
+    border-radius:0.25rem;
+    box-shadow: 0 0 0.8rem #666;
     display:inline-grid;
     grid-template-columns: 2rem auto;
-    margin:1rem;
+    margin:0.5rem;
+    min-width: 20.625rem;
     padding: 1rem;
-    width:45%;
+    width:30%;
+}
+
+.article:hover h2 {
+    color: #666;
+    text-decoration: underline;
+}
+
+.article:active h2 {opacity: 0.75;}
+
+.card {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+.card div {
+    width:100%;
+    height:15rem;
+    overflow: hidden;
+}
+
+.card div img {
+    width:100%;
+    height:auto;
+}
+
+.card figcaption {
+    display:grid;
+    gap:0.4rem;
+    grid-template: 1fr 1fr / 1fr 1fr;
+    padding:0 0.4rem;
+    width:90%;
+}
+
+.card figcaption p {
+    justify-self: start;
+}
+
+.card figcaption p strong {
+    color: #f10b2d;
+    font-weight: 700;
+}
+
+.time {
+    justify-self: end !important;
+}
+
+.card h2 {
+    font-size:1.25rem;
+    margin-bottom:0.75rem;
 }
 
 .votes {
@@ -14,14 +67,15 @@
 }
 
 .votes button {
+    border: 1px solid #148fdb;
     background-color: #148fdb;
-    border:none;
     color:#fff;
-    cursor: pointer;
-    margin:0.5rem;
 }
 
-.vote button:hover {
-    cursor: pointer;
-    opacity: 0.25;
+.votes button:hover {
+    opacity: 0.75;
+}
+
+.votes button:active {
+    opacity: 0.45;
 }
