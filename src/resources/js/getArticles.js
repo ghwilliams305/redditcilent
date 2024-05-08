@@ -83,10 +83,8 @@ async function getArticles(id) {
             
             const postData = responseObjTwo[0].data.children[0].data;
             const comments = responseObjTwo[1].data.children.map(child => child.data);
-            const post = new Article(postData, comments);
 
-            console.log(post.title);
-            console.log(post.comments[0].content);
+            return new Article(postData, comments);
         } catch(e) {
             return e;
         }
@@ -94,5 +92,3 @@ async function getArticles(id) {
         return e;
     }
 }
-
-getArticles('1cmpuwq');
