@@ -3,35 +3,34 @@ import ArticleCard from "../../components/ArticleCard";
 import SearchBar from "../../components/SearchBar";
 import styles from '../../resources/css/home.module.css';
 import { loadArticles } from "./homeSlice";
+import { useSearchParams } from "react-router-dom";
 
 function Home({cards, fetchArticles}) {
-    const {error, setError} = useState(false);
-    const {loading, setLoading} = useState(true);
-    const {article, setArticle} = useState([]);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [article, setArticle] = useState([]);
+    const [titles, setTile] = useState();
+    
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        const {isloading, isError, articles} = cards;
-
-        setError(isError);
-        setLoading(isloading);
-
-        if(isloading || isError) {
-            setArticle(articles);
-        }
+        setError(cards.isError);
+        setLoading(cards.isloading);
+        setArticle(cards.articles);
     }, [cards]);
-
+    
     useEffect(() => {
-        fetchArticles(loadArticles);
+        fetchArticles(loadArticles());
     }, []);
 
     if(error) {
-        return <p>Error when loading page :(</p>
+        return <p>Page Loading Error :(</p>
     } else {
         return (
             <>
                 <SearchBar />
                 <section className={styles.main}>
-                    {loading ? <p>Loading...</p> : article.map((card) => (
+                    {loading ? <p>Loading...</p> : article.map(card => (
                         <ArticleCard data={card} />
                     ))}
                 </section>

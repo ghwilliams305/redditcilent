@@ -4,13 +4,13 @@ import { CgArrowLongDown, CgArrowLongUp } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 
 function ArticleCard({data}) {
-    const {title, setTitle} = useState('Article Title');
-    const {ups, setUps} = useState();
-    const {image, setImage} = useState('');
-    const {date, setDate} = useState();
-    const {id, setId} = useState('');
-    const {author, setAuthor} = useState('Author');
-    const {commentsNum, setCommentsNum} = useState();
+    const [title, setTitle] = useState('Article Title');
+    const [ups, setUps] = useState();
+    const [image, setImage] = useState('');
+    const [date, setDate] = useState();
+    const [id, setId] = useState('');
+    const [author, setAuthor] = useState('Author');
+    const [commentsNum, setCommentsNum] = useState();
     
     useEffect(() => {
         setTitle(data.title);
@@ -21,13 +21,13 @@ function ArticleCard({data}) {
         setAuthor(data.author);
         setCommentsNum(data.commentsNum);
     }, [data]);
-
+    
     const navigate = useNavigate();
 
     const handleOnClick = () => {
         navigate(`/article/${id}`)
     }
-
+    
     return (
         <article className={styles.article}>
             <div className={styles.votes}>
@@ -38,7 +38,7 @@ function ArticleCard({data}) {
             <figure className={styles.card}>
                 <h2 onClick={handleOnClick}>{title}</h2>
                 <div>
-                    <img src={image} alt="Article Cover Image" />
+                    {image.search('reddit') !== -1 ? <img src={image} alt="Article Cover Image" /> : <p>{`${title} by ${author}`}</p>}
                 </div>
                 <figcaption>
                     <p><strong>Posted By:</strong> {author}</p>

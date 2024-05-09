@@ -3,6 +3,7 @@
     border-radius:0.25rem;
     box-shadow: 0 0 0.8rem #666;
     display:inline-grid;
+    gap: 1rem;
     grid-template-columns: 2rem auto;
     margin:0.5rem;
     min-width: 20.625rem;
@@ -24,6 +25,7 @@
 }
 
 .card div {
+    background-color: #666;
     width:100%;
     height:15rem;
     overflow: hidden;
@@ -34,11 +36,16 @@
     height:auto;
 }
 
+.card div p {
+    margin: 2rem;
+}
+
 .card figcaption {
     display:grid;
     gap:0.4rem;
-    grid-template: 1fr 1fr / 1fr 1fr;
-    padding:0 0.4rem;
+    grid-template: 1fr 1fr / 4fr 1fr;
+    padding:0.4rem;
+    text-align: left;
     width:90%;
 }
 
@@ -58,6 +65,7 @@
 .card h2 {
     font-size:1.25rem;
     margin-bottom:0.75rem;
+    text-align: left;
 }
 
 .votes {

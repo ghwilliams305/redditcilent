@@ -55,10 +55,10 @@ class ArticleCard {
             [60, 's'], 
             [60, 'mins'], 
             [24, 'hr'], 
-            [7, 'days'], 
-            [4, 'weeks'], 
-            [12, 'months'], 
-            [10, 'years']
+            [7, 'd'], 
+            [4, 'w'], 
+            [12, 'm'], 
+            [10, 'y']
         ];
 
         return convertor(convertions, timeDiff);
