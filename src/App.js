@@ -3,7 +3,7 @@ import Root from './components/Root';
 import Home from './pages/home/Home';
 import Article from './pages/article/Article';
 
-function App() {
+function App({state, dispatch}) {
   return (
     <BrowserRouter>
       <Routes>
