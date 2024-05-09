@@ -65,7 +65,7 @@ class ArticleCard {
     }
 }
 
-async function getArticleCards(numOfPost) {
+export  default async function getArticleCards() {
     const link = 'https://www.reddit.com/.json';
 
     try {

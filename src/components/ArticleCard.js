@@ -1,23 +1,49 @@
+import { useEffect, useState } from 'react';
 import styles from '../resources/css/articleCard.module.css';
 import { CgArrowLongDown, CgArrowLongUp } from "react-icons/cg";
+import { useNavigate } from 'react-router-dom';
 
-function ArticleCard() {
+function ArticleCard({data}) {
+    const {title, setTitle} = useState('Article Title');
+    const {ups, setUps} = useState();
+    const {image, setImage} = useState('');
+    const {date, setDate} = useState();
+    const {id, setId} = useState('');
+    const {author, setAuthor} = useState('Author');
+    const {commentsNum, setCommentsNum} = useState();
+    
+    useEffect(() => {
+        setTitle(data.title);
+        setUps(data.ups);
+        setImage(data.image);
+        setDate(data.date);
+        setId(data.id);
+        setAuthor(data.author);
+        setCommentsNum(data.commentsNum);
+    }, [data]);
+
+    const navigate = useNavigate();
+
+    const handleOnClick = () => {
+        navigate(`/article/${id}`)
+    }
+
     return (
         <article className={styles.article}>
             <div className={styles.votes}>
                 <button><CgArrowLongUp /></button>
-                <i>0</i>
+                <i>{ups}</i>
                 <button><CgArrowLongDown /></button>
             </div>
             <figure className={styles.card}>
-                <h2>Article Title</h2>
+                <h2 onClick={handleOnClick}>{title}</h2>
                 <div>
-                    <img src="" alt="Article Cover Image" />
+                    <img src={image} alt="Article Cover Image" />
                 </div>
                 <figcaption>
-                    <p><strong>Posted By:</strong> Author</p>
-                    <p className={styles.time}>Time</p>
-                    <p>Comment #</p>
+                    <p><strong>Posted By:</strong> {author}</p>
+                    <p className={styles.time}>{date}</p>
+                    <p>Comments {commentsNum}</p>
                 </figcaption>
             </figure>
         </article>
