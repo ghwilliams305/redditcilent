@@ -9,7 +9,7 @@ function App({state, dispatch}) {
       <Routes>
         <Route path="/" element={<Root />} >
           <Route index element={<Home cards={state.home} fetchArticles={dispatch} /> } />
-          <Route path='article/:article' element={<Article /> } />
+          <Route path='article/:article' element={<Article state={state.article} dispatch={dispatch} /> } />
         </Route>
       </Routes>
     </BrowserRouter>
