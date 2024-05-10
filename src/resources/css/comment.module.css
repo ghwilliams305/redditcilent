@@ -1,0 +1,28 @@
+.author {
+    display: inline;
+    color: #f10b2d !important;
+    margin: 0 !important;
+    width: fit-content;
+}
+
+.comment {
+    margin: 1rem 0;
+    width: 95%;
+}
+
+.comment div {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.comment p {
+    margin: 0 !important;
+    margin-top: 0.3rem;
+}
+
+.comment div p {
+    display: inline-block;
+    width: fit-content;
+}
