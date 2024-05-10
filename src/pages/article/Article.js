@@ -11,7 +11,7 @@ export default function Article({state, dispatch}) {
     const [articleObj, setArticleObj] = useState({});
 
     useEffect(() => {
-        dispatch(loadArticle());
+        dispatch(loadArticle(article));
     }, [article]);
 
     useEffect(() => {
@@ -23,7 +23,9 @@ export default function Article({state, dispatch}) {
     const checkLoading = value => isLoading ? 'Loading...' : value;
 
     if(isError) {
-        return <p>Page Failed to load :(</p>;
+        return (
+            <p>Page Failed to Loaded :(</p>
+        );
     } else {
         return (
             <>
