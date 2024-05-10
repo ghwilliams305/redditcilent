@@ -92,3 +92,5 @@ async function getArticles(id) {
         return e;
     }
 }
+
+export default getArticles
