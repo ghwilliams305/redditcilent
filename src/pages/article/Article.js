@@ -31,7 +31,7 @@ export default function Article({state, dispatch}) {
             <>
                 <figure className={styles.card}>
                     <div>
-                        {(isLoading || articleObj.image.search('reddit') === -1) ? "" : <img src={articleObj.image} alt="Article Cover Image" />}
+                        {(isLoading || !articleObj.image) ? "" : <embed src={articleObj.image} alt="Article Cover Image" />}
                     </div>
                     <h2>{checkLoading(articleObj.title)}</h2>
                     <figcaption>

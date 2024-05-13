@@ -22,13 +22,14 @@
 
 .card div {
     background-color: #666;
-    height: 20rem;
+    height: fit-content;
     margin: 0 auto;
+    min-height: 20rem;
     width: 95%;
 }
 
-.card div img {
-    height: 100%;
+.card div embed {
+    height: 45rem;
     width: auto;
 }
 

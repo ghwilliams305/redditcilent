@@ -29,16 +29,16 @@ function ArticleCard({data}) {
     }
     
     return (
-        <article className={styles.article}>
+        <article className={styles.article} onClick={handleOnClick}>
             <div className={styles.votes}>
                 <button><CgArrowLongUp /></button>
                 <i>{ups}</i>
                 <button><CgArrowLongDown /></button>
             </div>
             <figure className={styles.card}>
-                <h2 onClick={handleOnClick}>{title}</h2>
+                <h2>{title}</h2>
                 <div>
-                    {image.search('reddit') !== -1 ? <img src={image} alt="Article Cover Image" /> : <p>{`${title} by ${author}`}</p>}
+                    {image ? <img src={image} alt="Article Cover Image" /> : <p>{`${title} by ${author}`}</p>}
                 </div>
                 <figcaption>
                     <p><strong>Posted By:</strong> {author}</p>

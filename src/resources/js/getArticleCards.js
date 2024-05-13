@@ -15,10 +15,12 @@ const convertor = (convertionTable, rawNum) => {
 }
 
 class ArticleCard {
-    constructor({title, ups, thumbnail, created, id, author, num_comments}) {
+    constructor({title, ups, post_hint, created, id, author, num_comments, url}) {
         this.title = title;
         this._ups = ups;
-        this.image = thumbnail;
+        if(post_hint === 'image') {
+            this.image = url;
+        }
         this._date = created * 1000;
         this.id = id;
         this.author = author;

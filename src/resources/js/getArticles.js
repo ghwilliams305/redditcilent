@@ -15,13 +15,20 @@ const convertor = (convertionTable, rawNum) => {
 }
 
 class Article {
-    constructor({selftext, title, created, id, author, url}, comments) {
+    constructor({selftext, title, post_hint, created, id, author, url, media}, comments) {
         this.title = title;
         this.content = selftext;
-        this.image = url;
         this._date = created * 1000;
         this.id = id;
         this.author = author;
+
+        if(post_hint == 'hosted:video') {
+            this.image = media.reddit_video.fallback_url;
+        } else if(post_hint == 'image') {
+            this.image = url;
+        } else {
+            this.image = false;
+        }
         
         this.comments = comments.map(comment => ({
             author: comment.author,
