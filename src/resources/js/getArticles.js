@@ -15,10 +15,10 @@ const convertor = (convertionTable, rawNum) => {
 }
 
 class Article {
-    constructor({selftext, title, thumbnail, created, id, author}, comments) {
+    constructor({selftext, title, created, id, author, url}, comments) {
         this.title = title;
         this.content = selftext;
-        this.image = thumbnail;
+        this.image = url;
         this._date = created * 1000;
         this.id = id;
         this.author = author;
