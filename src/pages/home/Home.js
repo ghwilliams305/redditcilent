@@ -9,7 +9,7 @@ function Home({cards, fetchArticles}) {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
     const [article, setArticle] = useState([]);
-    const [titles, setTile] = useState();
+    const [titles, setTitle] = useState();
     
     const [searchParams, setSearchParams] = useSearchParams();
 

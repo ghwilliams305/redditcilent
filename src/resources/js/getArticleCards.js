@@ -65,7 +65,7 @@ class ArticleCard {
     }
 }
 
-export  default async function getArticleCards() {
+export default async function getArticleCards() {
     const link = 'https://www.reddit.com/.json';
 
     try {
@@ -74,6 +74,19 @@ export  default async function getArticleCards() {
         const posts = responseObj.data.children.map(child => child.data);
 
         return posts.map(post => new ArticleCard(post));
+    } catch(e) {
+        return e;
+    }
+}
+
+export async function filterCards(searchQuestion) {
+    try {
+        const listOfObjects = await getArticleCards();
+
+        return listOfObjects.filter(({title, author}) => (
+            title.toLowerCase().includes(searchQuestion.toLowerCase()) || 
+            author.toLowerCase().includes(searchQuestion.toLowerCase())
+        ));
     } catch(e) {
         return e;
     }
