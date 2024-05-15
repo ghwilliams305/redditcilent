@@ -28,7 +28,7 @@ function Home({cards, fetchArticles}) {
     } else {
         return (
             <>
-                <SearchBar />
+                {loading ? <p>Loading...</p> : <SearchBar />}
                 <section className={styles.main}>
                     {loading ? <p>Loading...</p> : article.map(card => (
                         <ArticleCard data={card} />

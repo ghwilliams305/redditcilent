@@ -38,7 +38,8 @@ const articleSlice = createSlice({
         builder.addCase(loadArticle.rejected, (state, action) => {
             return {
                 ...state,
-                isError: true
+                isError: true,
+                isLoading: false
             }
         });
     }
