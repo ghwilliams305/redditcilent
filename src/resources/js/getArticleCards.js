@@ -81,15 +81,11 @@ export default async function getArticleCards() {
     }
 }
 
-export async function filterCards(searchQuestion) {
-    try {
-        const listOfObjects = await getArticleCards();
+export async function filterCards(listOfObjects, searchQuestion) {
+    const lowerCaseSearchQuestion = searchQuestion.toLowerCase()
 
-        return listOfObjects.filter(({title, author}) => (
-            title.toLowerCase().includes(searchQuestion.toLowerCase()) || 
-            author.toLowerCase().includes(searchQuestion.toLowerCase())
-        ));
-    } catch(e) {
-        return e;
-    }
+    return listOfObjects.filter(({title, author}) => (
+        title.toLowerCase().includes(lowerCaseSearchQuestion) || 
+        author.toLowerCase().includes(lowerCaseSearchQuestion)
+    ));
 }
