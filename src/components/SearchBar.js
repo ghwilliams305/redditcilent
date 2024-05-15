@@ -4,14 +4,11 @@ import { useEffect, useState } from "react";
 import { filterCards } from "../resources/js/getArticleCards";
 
 
-function SearchBar({articles}) {
-    const [filteredCards, setFilteredCards] = useState(false);
-    const [searchQuestion, setSearchQuestion] = useState();
+function SearchBar({handleSearch}) {
+    const [searchQuestion, setSearchQuestion] = useState(false);
 
     useEffect(() => {
-        const filteredArticles = filterCards(articles, searchQuestion);
-
-        setFilteredCards(filteredArticles);
+        handleSearch(searchQuestion);
     }, [searchQuestion]);
 
     const handleChange = ({target}) => {
@@ -26,11 +23,6 @@ function SearchBar({articles}) {
                 placeholder="Search..."
                 onChange={handleChange}
                 list="article-options" />
-            <datalist id='article-options'>
-                {filteredCards ? filteredCards.map(card => (
-                    <p>{`${card.title} by ${card.author}`}</p>
-                )) : ''}
-            </datalist>
         </article>
     );
 }

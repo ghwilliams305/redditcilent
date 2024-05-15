@@ -81,7 +81,7 @@ export default async function getArticleCards() {
     }
 }
 
-export async function filterCards(listOfObjects, searchQuestion) {
+export function filterCards(listOfObjects, searchQuestion) {
     const lowerCaseSearchQuestion = searchQuestion.toLowerCase()
 
     return listOfObjects.filter(({title, author}) => (
