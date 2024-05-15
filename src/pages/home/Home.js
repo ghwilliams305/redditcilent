@@ -15,6 +15,14 @@ function Home({cards, fetchArticles}) {
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
+        const searchQuestion = searchParams.get('q');
+
+        if(searchQuestion) {
+            setArticle(filterCards(cards.articles, searchQuestion));
+        }
+    }, [searchParams]);
+
+    useEffect(() => {
         setError(cards.isError);
         setLoading(cards.isloading);
         setArticle(cards.articles);
@@ -34,12 +42,20 @@ function Home({cards, fetchArticles}) {
         }
     }
 
+    const handleSubmit = (searchQuestion) => {
+        if(article.length === 1) {
+            navigate(`/article/${article[0].id}`);
+        } else {
+            setSearchParams(searchQuestion ? {q: searchQuestion} : {});
+        }
+    }
+
     if(error) {
         return <p>Page Loading Error :( {JSON.stringify(article)}</p>
     } else {
         return (
             <>
-                {loading ? <p>Loading...</p> : <SearchBar handleSearch={handleSearch} />}
+                {loading ? <p>Loading...</p> : <SearchBar handleSearch={handleSearch} handleSubmit={handleSubmit} />}
                 <section className={styles.main}>
                     {loading ? <p>Loading...</p> : article.map(card => (
                         <ArticleCard data={card} />
