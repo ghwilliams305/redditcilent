@@ -24,7 +24,7 @@ export default function Article({state, dispatch}) {
 
     if(isError) {
         return (
-            <p>Page Failed to Loaded :(</p>
+            <p>Page Failed to Loaded :( <br /> {(typeof articleObj === 'string') ? articleObj : JSON.stringify(articleObj)}</p>
         );
     } else {
         return (

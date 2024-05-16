@@ -15,14 +15,14 @@ const convertor = (convertionTable, rawNum) => {
 }
 
 class ArticleCard {
-    constructor({title, ups, post_hint, created, id, author, num_comments, url}) {
+    constructor({title, ups, post_hint, created, author, num_comments, permalink, url}) {
         this.title = title;
         this._ups = ups;
         if(post_hint === 'image') {
             this.image = url;
         }
         this._date = created * 1000;
-        this.id = id;
+        this.id = permalink.replaceAll('/', '+');
         this.author = author;
         this._commentsNum = num_comments;
     }
@@ -72,12 +72,34 @@ export default async function getArticleCards() {
 
     try {
         const response = await fetch(link);
+        if(!response.ok) {
+            return [false, `${response.status}: ${response.statusText ? response.statusText : 'no status text'}`];
+        }
+
         const responseObj = await response.json();
         const posts = responseObj.data.children.map(child => child.data);
 
-        return posts.map(post => new ArticleCard(post));
+        return [true, posts.map(post => new ArticleCard(post))];
     } catch(e) {
-        return e;
+        return [false, `Error receieving cards - ${e}`];
+    }
+}
+
+export async function getSearchResults(searchquestion) {
+    const link = `https://www.reddit.com/search/.json?q=${searchquestion}`;
+
+    try {
+        const response = await fetch(link);
+        if(!response.ok) {
+            return [false, `${response.status}: ${response.statusText ? response.statusText : 'no status text'}`];
+        }
+
+        const responseObj = await response.json();
+        const posts = responseObj.data.children.map(child => child.data);
+        
+        return [true, posts.map(post => new ArticleCard(post))];
+    } catch(e) {
+        return [false, `Error receieving search results - ${e}`];
     }
 }
 
@@ -89,3 +111,12 @@ export function filterCards(listOfObjects, searchQuestion) {
         author.toLowerCase().includes(lowerCaseSearchQuestion)
     ));
 }
+/*
+async function log() {
+    const results = await getArticleCards()
+
+    console.log(results);
+}
+
+log();
+*/

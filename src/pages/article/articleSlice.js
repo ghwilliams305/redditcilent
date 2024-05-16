@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import getArticles from "../../resources/js/getArticles";
 
-export const loadArticle = createAsyncThunk('article/loadArticle', async (articleId, thunkAPI) => {
-    try {
-        const articleObject = await getArticles(articleId);
-
-        return articleObject;
-    } catch(e) {
-        return e;
+export const loadArticle = createAsyncThunk('article/loadArticle', async (articleId, {rejectWithValue}) => {
+    const articles = await getArticles(articleId);
+    if(!articles[0]) {
+        return rejectWithValue(articles[1]);
     }
+
+    return articles[1];
 });
 
 const articleSlice = createSlice({
@@ -39,7 +38,8 @@ const articleSlice = createSlice({
             return {
                 ...state,
                 isError: true,
-                isLoading: false
+                isLoading: false,
+                articleObj: action.payload
             }
         });
     }

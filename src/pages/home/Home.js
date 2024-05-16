@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ArticleCard from "../../components/ArticleCard";
 import SearchBar from "../../components/SearchBar";
 import styles from '../../resources/css/home.module.css';
-import { loadArticles } from "./homeSlice";
+import { loadArticles, loadSearchResults } from "./homeSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { filterCards } from "../../resources/js/getArticleCards";
 
@@ -18,7 +18,9 @@ function Home({cards, fetchArticles}) {
         const searchQuestion = searchParams.get('q');
 
         if(searchQuestion) {
-            setArticle(filterCards(cards.articles, searchQuestion));
+            fetchArticles(loadSearchResults(searchQuestion));
+        } else {
+            fetchArticles(loadArticles());
         }
     }, [searchParams]);
 
@@ -51,7 +53,7 @@ function Home({cards, fetchArticles}) {
     }
 
     if(error) {
-        return <p>Page Loading Error :( {JSON.stringify(article)}</p>
+        return <p>Page Loading Error :( <br /> {(typeof article === 'string') ? article : JSON.stringify(article)}</p>
     } else {
         return (
             <>

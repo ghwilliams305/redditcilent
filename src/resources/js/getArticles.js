@@ -41,12 +41,12 @@ class Article {
                 const convertions = [
                     [1000, 'ms'], 
                     [60, 's'], 
-                    [60, 'mins'], 
+                    [60, 'min'], 
                     [24, 'hr'], 
-                    [7, 'days'], 
-                    [4, 'weeks'], 
-                    [12, 'months'], 
-                    [10, 'years']
+                    [7, 'd'], 
+                    [4, 'w'], 
+                    [12, 'm'], 
+                    [10, 'y']
                 ];
 
                 return convertor(convertions, timeDiff);
@@ -61,12 +61,12 @@ class Article {
         const convertions = [
             [1000, 'ms'], 
             [60, 's'], 
-            [60, 'mins'], 
+            [60, 'min'], 
             [24, 'hr'], 
-            [7, 'days'], 
-            [4, 'weeks'], 
-            [12, 'months'], 
-            [10, 'years']
+            [7, 'd'], 
+            [4, 'w'], 
+            [12, 'm'], 
+            [10, 'y']
         ];
 
         return convertor(convertions, timeDiff);
@@ -75,28 +75,23 @@ class Article {
 
 
 async function getArticles(id) {
-    const link = 'https://www.reddit.com/.json';
+    const permalink = id.replaceAll('+', '/')
+    const link = `https://www.reddit.com${permalink}.json`;
 
     try {
         const response = await fetch(link);
-        const responseObj = await response.json();
-        const posts = responseObj.data.children.map(child => child.data).find(data => data.id === id);
-
-        const linkTwo = `https://www.reddit.com${posts.permalink}.json`;
-
-        try {
-            const responseTwo = await fetch(linkTwo);
-            const responseObjTwo = await responseTwo.json();
-            
-            const postData = responseObjTwo[0].data.children[0].data;
-            const comments = responseObjTwo[1].data.children.map(child => child.data);
-
-            return new Article(postData, comments);
-        } catch(e) {
-            return e;
+        if(!response.ok) {
+            return [false, `${response.status}: ${response.statusText ? response.statusText : 'no status text'}`];
         }
+
+        const responseObj = await response.json();
+            
+        const postData = responseObj[0].data.children[0].data;
+        const comments = responseObj[1].data.children.map(child => child.data);
+
+        return [true, new Article(postData, comments)];
     } catch(e) {
-        return e;
+        return [false, `Error receieving post data - ${e}`];
     }
 }
 
