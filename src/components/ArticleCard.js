@@ -29,13 +29,13 @@ function ArticleCard({data}) {
     }
     
     return (
-        <article className={styles.article} onClick={handleOnClick}>
+        <article className={styles.article}>
             <div className={styles.votes}>
                 <button><CgArrowLongUp /></button>
                 <i>{ups}</i>
                 <button><CgArrowLongDown /></button>
             </div>
-            <figure className={styles.card}>
+            <figure className={styles.card} onClick={handleOnClick}>
                 <h2>{title}</h2>
                 <div>
                     {image ? <img src={image} alt="Article Cover Image" /> : <p>{`${title} by ${author}`}</p>}

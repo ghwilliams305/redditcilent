@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Comment from "../../components/Comment";
 import styles from "../../resources/css/article.module.css";
+import MarkdownRenderer from 'react-markdown-renderer';
 import { useParams } from "react-router-dom";
 import { loadArticle } from "./articleSlice";
 
@@ -41,7 +42,7 @@ export default function Article({state, dispatch}) {
                     </figcaption>
                 </figure>
                 <div className={styles.main}>
-                    <p>{checkLoading(articleObj.content)}</p>
+                    <MarkdownRenderer markdown={checkLoading(articleObj.content)} className={styles.content} />
                     <section>
                         <h2>Comments</h2>
                         <div>

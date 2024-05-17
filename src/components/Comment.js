@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from '../resources/css/comment.module.css';
+import MarkdownRenderer from 'react-markdown-renderer';
 
 function Comment({data}) {
     const [author, setAuthor] = useState('');
@@ -18,7 +19,7 @@ function Comment({data}) {
                 <h2 className={styles.author}>{author}</h2>
                 <p>{time}</p>
             </div>
-            <p>{content}</p>
+            <MarkdownRenderer markdown={content} className={styles.content} />
         </article>
     );
 }

@@ -7,6 +7,7 @@
 
 .comment {
     margin: 1rem 0;
+    overflow: hidden;
     width: 95%;
 }
 
@@ -17,13 +18,17 @@
     width: 100%;
 }
 
-.comment p {
-    margin: 0 !important;
-    margin-top: 0.3rem;
-    width: 100% !important;
-}
-
 .comment div p {
     display: inline-block;
     width: fit-content !important;
+}
+
+.content {
+    display: initial !important;
+    margin-top: 0.3rem;
+    text-align: left;
+}
+
+.content p {
+    display: block !important;
 }
