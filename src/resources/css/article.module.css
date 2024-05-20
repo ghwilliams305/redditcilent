@@ -24,13 +24,14 @@
     background-color: #666;
     height: fit-content;
     margin: 0 auto;
-    min-height: 20rem;
+    height: 35rem;
     width: 95%;
 }
 
 .card div embed {
-    height: 45rem;
-    width: auto;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .card h2 {
@@ -51,9 +52,8 @@
     align-content: space-around;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 2rem 0;
-    padding: 0 5rem;
 }
 
 .main section {
