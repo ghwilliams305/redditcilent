@@ -104,19 +104,14 @@ export async function getSearchResults(searchquestion) {
 }
 
 export function filterCards(listOfObjects, searchQuestion) {
-    const lowerCaseSearchQuestion = searchQuestion.toLowerCase()
+    const lowerCaseSearchQuestion = searchQuestion ? searchQuestion.toLowerCase() : '';
 
-    return listOfObjects.filter(({title, author}) => (
-        title.toLowerCase().includes(lowerCaseSearchQuestion) || 
-        author.toLowerCase().includes(lowerCaseSearchQuestion)
-    ));
+    try {
+        return listOfObjects.filter(({title, author}) => (
+            title.toLowerCase().includes(lowerCaseSearchQuestion) || 
+            author.toLowerCase().includes(lowerCaseSearchQuestion)
+        ));
+    } catch(e) {
+        return [];
+    }
 }
-/*
-async function log() {
-    const results = await getArticleCards()
-
-    console.log(results);
-}
-
-log();
-*/
