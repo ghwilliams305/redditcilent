@@ -7,3 +7,11 @@
     font-size: 3rem;
     margin:1.5rem 0;
 }
+
+.header h1:hover {
+    color: #f10b2d;
+}
+
+.header h1:active {
+    opacity: 0.5;
+}
