@@ -10,7 +10,7 @@ test('Test getArticleCards always resolves', async () => {
 jest.setTimeout(10000)
 
 test('Test getSearchResults always resolves', async () => {
-    const sampleQuestion = ['how to beast', 'fahg887581-=pl', '/F//S/S', 'chicken', 'porn', 'm*n', 'geot \m', undefined, ''];
+    const sampleQuestion = ['how to beast', 'fahg887581-=pl', '/F////S/S', 'chicken', 'porn', 'm*n', 'geot \m', undefined, ''];
     
     for(let question of sampleQuestion){
         const sampleObject = await getSearchResults(question);
